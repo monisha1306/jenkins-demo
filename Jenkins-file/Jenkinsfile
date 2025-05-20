@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven3'   // the name you gave Maven in Global Tool Configuration
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/monisha1306/jenkins-demo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}
